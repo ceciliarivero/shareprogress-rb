@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.description = s.summary
   s.authors = ["Cecilia Rivero"]
   s.email = ["contact@ceciliarivero.com"]
-  s.homepage = "https://github.com/SumOfUs/shareprogress"
+  s.homepage = "https://github.com/ceciliarivero/shareprogress-rb"
   s.license = "MIT"
 
   s.files = `git ls-files`.split("\n")
