@@ -93,7 +93,7 @@ end
 scope do
   # all
   test "create email button successfully" do |data|
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {
       "id"=>12136,
@@ -147,7 +147,7 @@ scope do
   test "create email button with wrong button_template" do |data|
     data["button_template"] = "sp_tw_large"
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:button_template=>[:not_valid]}
 
@@ -157,7 +157,7 @@ scope do
   test "create email button with nil email_subject" do |data|
     data["variants"]["email"][0]["email_subject"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:email_subject=>[:nil]}
 
@@ -167,7 +167,7 @@ scope do
   test "create email button with empty email_subject" do |data|
     data["variants"]["email"][0]["email_subject"] = ""
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:email_subject=>[:empty]}
 
@@ -177,7 +177,7 @@ scope do
   test "create email button with nil email_body" do |data|
     data["variants"]["email"][0]["email_body"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:email_body=>[:nil]}
 
@@ -187,7 +187,7 @@ scope do
   test "create email button with empty email_body" do |data|
     data["variants"]["email"][0]["email_body"] = ""
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:email_body=>[:empty]}
 
@@ -197,7 +197,7 @@ scope do
   test "create email button with {LINK} not included in email_body" do |data|
     data["variants"]["email"][0]["email_body"] = "This is a content with no link"
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:email_body=>[:link_not_included]}
 

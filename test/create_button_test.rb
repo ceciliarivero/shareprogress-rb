@@ -93,7 +93,7 @@ end
 scope do
   # all
   test "create button successfully" do |data|
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {
       "id"=>12136,
@@ -148,7 +148,7 @@ scope do
   test "create button with no key" do |data|
     data["key"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:key=>[:not_present]}
 
@@ -159,7 +159,7 @@ scope do
   test "create button with no page_url" do |data|
     data["page_url"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:page_url=>[:not_url]}
 
@@ -170,7 +170,7 @@ scope do
   test "create button with nil button_template" do |data|
     data["button_template"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:button_template=>[:not_valid]}
 
@@ -180,7 +180,7 @@ scope do
   test "create button with empty button_template" do |data|
     data["button_template"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:button_template=>[:not_valid]}
 
@@ -190,7 +190,7 @@ scope do
   test "create button with wrong button_template" do |data|
     data["button_template"] = "wrong_button_template"
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:button_template=>[:not_valid]}
 
@@ -201,7 +201,7 @@ scope do
   test "create button with not boolean auto_fill" do |data|
     data["auto_fill"] = ""
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:auto_fill=>[:not_boolean]}
 
@@ -212,7 +212,7 @@ scope do
   test "create button with no variants" do |data|
     data["variants"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:variants=>[:not_present]}
 
@@ -223,7 +223,7 @@ scope do
   test "create button with not boolean automatic_traffic_routing" do |data|
     data["advanced_options"]["automatic_traffic_routing"] = ""
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:automatic_traffic_routing=>[:not_boolean]}
 
@@ -233,7 +233,7 @@ scope do
   test "create button with not boolean buttons_optimize_actions" do |data|
     data["advanced_options"]["buttons_optimize_actions"] = ""
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:buttons_optimize_actions=>[:not_boolean]}
 
@@ -243,7 +243,7 @@ scope do
   test "create button with no param in customize_params" do |data|
     data["advanced_options"]["customize_params"]["param"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:param=>[:not_present]}
 
@@ -253,7 +253,7 @@ scope do
   test "create button with no e in customize_params" do |data|
     data["advanced_options"]["customize_params"]["e"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:e=>[:not_present]}
 
@@ -263,7 +263,7 @@ scope do
   test "create button with no f in customize_params" do |data|
     data["advanced_options"]["customize_params"]["f"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:f=>[:not_present]}
 
@@ -273,7 +273,7 @@ scope do
   test "create button with no t in customize_params" do |data|
     data["advanced_options"]["customize_params"]["t"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:t=>[:not_present]}
 
@@ -283,7 +283,7 @@ scope do
   test "create button with no o in customize_params" do |data|
     data["advanced_options"]["customize_params"]["o"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:o=>[:not_present]}
 
@@ -293,7 +293,7 @@ scope do
   test "create button with no id in id_pass" do |data|
     data["advanced_options"]["id_pass"]["id"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:id=>[:not_present]}
 
@@ -303,7 +303,7 @@ scope do
   test "create button with no passed in id_pass" do |data|
     data["advanced_options"]["id_pass"]["passed"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:passed=>[:not_present]}
 

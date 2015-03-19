@@ -93,7 +93,7 @@ end
 scope do
   # all
   test "create twitter button successfully" do |data|
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {
       "id"=>12152,
@@ -151,7 +151,7 @@ scope do
   test "create twitter button with wrong button_template" do |data|
     data["button_template"] = "sp_fb_small"
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:button_template=>[:not_valid]}
 
@@ -161,7 +161,7 @@ scope do
   test "create twitter button with nil twitter_message" do |data|
     data["variants"]["twitter"][0]["twitter_message"] = nil
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:twitter_message=>[:nil]}
 
@@ -171,7 +171,7 @@ scope do
   test "create twitter button with empty twitter_message" do |data|
     data["variants"]["twitter"][0]["twitter_message"] = ""
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:twitter_message=>[:empty]}
 
@@ -181,7 +181,7 @@ scope do
   test "create twitter button with {LINK} not included in twitter_message" do |data|
     data["variants"]["twitter"][0]["twitter_message"] = "This is a content with no link"
 
-    result = ShareProgress::create_button(data)
+    result = ShareProgress::Button.create_button(data)
 
     expected_result = {:twitter_message=>[:link_not_included]}
 
