@@ -7,7 +7,7 @@ require_relative "shareprogress/filters/new_facebook_variants"
 
 module ShareProgress
   class Button
-    def self.create_button(data)
+    def self.create(data)
       # Validates the input (a hash) to send a POST request to
       # ShareProgress to create a share button. The result could be:
       # a) A hash containing the information of the created button or,
@@ -110,7 +110,7 @@ module ShareProgress
         if variants.valid?
           # send request to ShareProgress to create a button
           begin
-            request = ShareProgressRequest.create_button(button.attributes)
+            request = ShareProgressRequest.create(button.attributes)
             request["response"][0]
           rescue Requests::Error => e
             JSON.parse(e.response.body)["message"]
