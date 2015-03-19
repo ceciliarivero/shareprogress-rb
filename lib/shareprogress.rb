@@ -1,4 +1,6 @@
 require "scrivener"
+require "requests"
+
 require_relative "shareprogress/filters/new_button"
 require_relative "shareprogress/filters/new_email_variants"
 require_relative "shareprogress/filters/new_twitter_variants"
