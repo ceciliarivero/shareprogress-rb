@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.version = "1.0.0"
   s.summary = "Ruby gem to communicate with ShareProgress API"
   s.description = s.summary
-  s.authors = ["SumOfUs"]
-  s.email = ["info@sumofus.org"]
+  s.authors = ["Cecilia Rivero"]
+  s.email = ["contact@ceciliarivero.com"]
   s.homepage = "https://github.com/SumOfUs/shareprogress"
   s.license = "MIT"
 
