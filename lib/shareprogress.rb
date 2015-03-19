@@ -125,8 +125,4 @@ module ShareProgress
 
     end
   end
-
-  class Page
-    # methods to create, read, update and delete pages
-  end
 end
