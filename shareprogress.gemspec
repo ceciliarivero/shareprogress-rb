@@ -10,10 +10,8 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_dependency "requests"
-  s.add_dependency "scrivener"
+  s.add_runtime_dependency "requests", "~> 0"
+  s.add_runtime_dependency "scrivener", "~> 0"
 
-  s.add_development_dependency "cuba"
-  s.add_development_dependency "cuba-contrib"
-  s.add_development_dependency "cutest"
+  s.add_development_dependency "cutest", "~> 0"
 end
