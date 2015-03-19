@@ -111,16 +111,16 @@ module ShareProgress
           # send request to ShareProgress to create a button
           begin
             request = ShareProgressRequest.create(button.attributes)
-            request["response"][0]
+            return request["response"][0]
           rescue Requests::Error => e
-            JSON.parse(e.response.body)["message"]
+            return JSON.parse(e.response.body)["message"]
           end
         else
-          variants.errors
+          return variants.errors
         end
 
       else
-        button.errors
+        return button.errors
       end
 
     end
