@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "requests"
   s.add_dependency "scrivener"
+
   s.add_development_dependency "cuba"
   s.add_development_dependency "cuba-contrib"
   s.add_development_dependency "cutest"
