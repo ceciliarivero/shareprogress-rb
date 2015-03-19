@@ -1,7 +1,9 @@
 require "scrivener"
 require_relative "shareprogress/shareprogress_request"
-
-Dir["./lib/shareprogress/filters/*.rb"].each  { |rb| require rb }
+require_relative "shareprogress/filters/new_button"
+require_relative "shareprogress/filters/new_email_variants"
+require_relative "shareprogress/filters/new_twitter_variants"
+require_relative "shareprogress/filters/new_facebook_variants"
 
 class ShareProgress
   def self.create_button(data)
