@@ -1,5 +1,4 @@
 require "scrivener"
-require_relative "shareprogress/shareprogress_request"
 require_relative "shareprogress/filters/new_button"
 require_relative "shareprogress/filters/new_email_variants"
 require_relative "shareprogress/filters/new_twitter_variants"
@@ -7,6 +6,22 @@ require_relative "shareprogress/filters/new_facebook_variants"
 
 module ShareProgress
   class Button
+    def self.request(method, payload)
+      case method
+      when "create"
+        url = "https://run.shareprogress.org/api/v1/buttons/update"
+      when "update"
+        # ...
+      end
+
+      response = Requests.request("POST", url,
+        data: JSON.dump(payload),
+        headers: { "Content-Type" => "application/json" }
+      )
+
+      return JSON.parse(response.body)
+    end
+
     def self.create(data)
       # Validates the input (a hash) to send a POST request to
       # ShareProgress to create a share button. The result could be:
@@ -116,7 +131,7 @@ module ShareProgress
 
       # send request to ShareProgress to create a button
       begin
-        request = ShareProgressRequest.create(button.attributes)
+        request = request("create", button.attributes)
         return request["response"][0]
       rescue Requests::Error => e
         return JSON.parse(e.response.body)["message"]
