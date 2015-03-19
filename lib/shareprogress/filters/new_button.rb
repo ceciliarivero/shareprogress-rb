@@ -5,6 +5,7 @@ class NewButton < Scrivener
   def validate
     assert_present :key
     assert_url :page_url
+    assert_present :page_title
 
     assert_member :button_template, %w{sp_em_small sp_em_large sp_tw_small
       sp_tw_large sp_fb_small sp_fb_large}

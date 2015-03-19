@@ -147,7 +147,7 @@ scope do
   end
 
   # key
-  test "create button with no key" do |data|
+  test "create button with nil key" do |data|
     data["key"] = nil
 
     result = ShareProgress::Button.create(data)
@@ -157,13 +157,56 @@ scope do
     assert result == expected_result
   end
 
+  test "create button with empty key" do |data|
+    data["key"] = ""
+
+    result = ShareProgress::Button.create(data)
+
+    expected_result = {:key=>[:not_present]}
+
+    assert result == expected_result
+  end
+
   # page_url
-  test "create button with no page_url" do |data|
+  test "create button with nil page_url" do |data|
     data["page_url"] = nil
 
     result = ShareProgress::Button.create(data)
 
     expected_result = {:page_url=>[:not_url]}
+
+    assert result == expected_result
+  end
+
+  # page_url
+  test "create button with empty page_url" do |data|
+    data["page_url"] = ""
+
+    result = ShareProgress::Button.create(data)
+
+    expected_result = {:page_url=>[:not_url]}
+
+    assert result == expected_result
+  end
+
+  # page_title
+  test "create button with nil page_title" do |data|
+    data["page_title"] = nil
+
+    result = ShareProgress::Button.create(data)
+
+    expected_result = {:page_title=>[:not_present]}
+
+    assert result == expected_result
+  end
+
+  # page_title
+  test "create button with empty page_title" do |data|
+    data["page_title"] = ""
+
+    result = ShareProgress::Button.create(data)
+
+    expected_result = {:page_title=>[:not_present]}
 
     assert result == expected_result
   end
