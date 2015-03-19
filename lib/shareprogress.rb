@@ -5,7 +5,7 @@ require_relative "shareprogress/filters/new_twitter_variants"
 require_relative "shareprogress/filters/new_facebook_variants"
 
 module ShareProgress
-  class Button
+  module Button
     def self.request(method, payload)
       case method
       when "create"

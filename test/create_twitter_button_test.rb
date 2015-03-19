@@ -3,7 +3,7 @@ require_relative "../lib/shareprogress"
 
 # Monkeypath the communication with ShareProgress
 module ShareProgress
-  class Button
+  module Button
     def self.request(method, payload)
       return {
         "success"=>true,
