@@ -96,33 +96,31 @@ module ShareProgress
       # }
       button = NewButton.new(data)
 
-      if button.valid?
-        button_variants = button.variants.merge(button_template: button.button_template)
-
-        if button.variants["email"]
-          variants = NewEmailVariants.new(button_variants)
-        elsif button.variants["twitter"]
-          variants = NewTwitterVariants.new(button_variants)
-        elsif button.variants["facebook"]
-          variants = NewFacebookVariants.new(button_variants)
-        end
-
-        if variants.valid?
-          # send request to ShareProgress to create a button
-          begin
-            request = ShareProgressRequest.create(button.attributes)
-            return request["response"][0]
-          rescue Requests::Error => e
-            return JSON.parse(e.response.body)["message"]
-          end
-        else
-          return variants.errors
-        end
-
-      else
+      unless button.valid?
         return button.errors
       end
 
+      button_variants = button.variants.merge(button_template: button.button_template)
+
+      if button.variants["email"]
+        variants = NewEmailVariants.new(button_variants)
+      elsif button.variants["twitter"]
+        variants = NewTwitterVariants.new(button_variants)
+      elsif button.variants["facebook"]
+        variants = NewFacebookVariants.new(button_variants)
+      end
+
+      unless variants.valid?
+        return variants.errors
+      end
+
+      # send request to ShareProgress to create a button
+      begin
+        request = ShareProgressRequest.create(button.attributes)
+        return request["response"][0]
+      rescue Requests::Error => e
+        return JSON.parse(e.response.body)["message"]
+      end
     end
   end
 end
