@@ -178,7 +178,6 @@ scope do
     assert result == expected_result
   end
 
-  # page_url
   test "create button with empty page_url" do |data|
     data["page_url"] = ""
 
@@ -200,7 +199,6 @@ scope do
     assert result == expected_result
   end
 
-  # page_title
   test "create button with empty page_title" do |data|
     data["page_title"] = ""
 

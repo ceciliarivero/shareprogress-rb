@@ -1,4 +1,4 @@
-class NewTwitterVariants < Scrivener
+class CreateTwitterVariants < Scrivener
   attr_accessor :twitter, :button_template
 
   def validate

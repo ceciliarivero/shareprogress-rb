@@ -1,4 +1,4 @@
-class NewEmailVariants < Scrivener
+class CreateEmailVariants < Scrivener
   attr_accessor :email, :button_template
 
   def validate

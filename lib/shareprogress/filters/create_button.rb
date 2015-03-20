@@ -1,4 +1,4 @@
-class NewButton < Scrivener
+class CreateButton < Scrivener
   attr_accessor :key, :page_url, :button_template, :page_title
   attr_accessor :auto_fill, :advanced_options, :variants
 

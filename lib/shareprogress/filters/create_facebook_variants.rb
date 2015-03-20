@@ -1,4 +1,4 @@
-class NewFacebookVariants < Scrivener
+class CreateFacebookVariants < Scrivener
   attr_accessor :facebook, :button_template
 
   def validate

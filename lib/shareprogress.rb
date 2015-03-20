@@ -1,10 +1,11 @@
 require "scrivener"
 require "requests"
 
-require_relative "shareprogress/filters/new_button"
-require_relative "shareprogress/filters/new_email_variants"
-require_relative "shareprogress/filters/new_twitter_variants"
-require_relative "shareprogress/filters/new_facebook_variants"
+require_relative "shareprogress/filters/create_button"
+require_relative "shareprogress/filters/create_email_variants"
+require_relative "shareprogress/filters/create_twitter_variants"
+require_relative "shareprogress/filters/create_facebook_variants"
+require_relative "shareprogress/filters/read_button"
 
 module ShareProgress
   module Button
@@ -12,8 +13,8 @@ module ShareProgress
       case method
       when "create"
         url = "https://run.shareprogress.org/api/v1/buttons/update"
-      when "update"
-        # ...
+      when "read"
+        url = "https://run.shareprogress.org/api/v1/buttons/read"
       end
 
       response = Requests.request("POST", url,
@@ -111,7 +112,7 @@ module ShareProgress
       #       "id"=>"id",
       #       "passed"=>"referrer_id"}}
       # }
-      button = NewButton.new(data)
+      button = CreateButton.new(data)
 
       unless button.valid?
         return button.errors
@@ -120,11 +121,11 @@ module ShareProgress
       button_variants = button.variants.merge(button_template: button.button_template)
 
       if button.variants["email"]
-        variants = NewEmailVariants.new(button_variants)
+        variants = CreateEmailVariants.new(button_variants)
       elsif button.variants["twitter"]
-        variants = NewTwitterVariants.new(button_variants)
+        variants = CreateTwitterVariants.new(button_variants)
       elsif button.variants["facebook"]
-        variants = NewFacebookVariants.new(button_variants)
+        variants = CreateFacebookVariants.new(button_variants)
       end
 
       unless variants.valid?
@@ -134,6 +135,22 @@ module ShareProgress
       # send request to ShareProgress to create a button
       begin
         request = request("create", button.attributes)
+        return request["response"][0]
+      rescue Requests::Error => e
+        return JSON.parse(e.response.body)["message"]
+      end
+    end
+
+    def self.read(data)
+      button = ReadButton.new(data)
+
+      unless button.valid?
+        return button.errors
+      end
+
+      # send request to ShareProgress to read the info about a button
+      begin
+        request = request("read", button.attributes)
         return request["response"][0]
       rescue Requests::Error => e
         return JSON.parse(e.response.body)["message"]

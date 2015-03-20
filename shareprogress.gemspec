@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "shareprogress"
-  s.version = "0.0.2"
+  s.version = "0.1.0"
   s.summary = "Ruby gem to communicate with ShareProgress API"
   s.description = s.summary
   s.authors = ["Cecilia Rivero"]
